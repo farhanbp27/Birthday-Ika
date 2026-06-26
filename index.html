@@ -847,98 +847,108 @@
   </div>
 
 </div>
-
 <!-- ========================= -->
 <!-- AUDIO -->
-<!-- ========================= -->
-
 <audio
   id="bgMusic"
   loop
+  preload="auto"
 >
-
   <source
-
-    src="
-    https://drive.google.com/uc?export=download&id=MASUKKAN_AUDIO_ID
-    "
-
-    type="audio/mp3"
-
+    src="https://raw.githubusercontent.com/farhanbp27/Birthday-Ika/farhanbp27-patch-1/Aqila%20Zw%20-%20Happy%20Birthday%20%20Lagu%20Anak%20Indonesia%20(1)%20(1).mp3"
+    type="audio/mpeg"
   >
-
 </audio>
-
 <!-- ========================= -->
 <!-- SCRIPT -->
 <!-- ========================= -->
-
 <script>
 
-  const correctAnswer = "Hjh Maimunah";
+const correctAnswer = "Hjh Maimunah";
 
-  function checkAnswer(){
+function checkAnswer(){
 
-    const userAnswer =
+  const userAnswer =
+  document
+  .getElementById("answer")
+  .value
+  .trim();
+
+  if(
+    userAnswer.toLowerCase()
+    ===
+    correctAnswer.toLowerCase()
+  ){
 
     document
-    .getElementById("answer")
-    .value
-    .trim();
+    .getElementById("quizPage")
+    .classList.add("hidden");
 
-    if(
+    document
+    .getElementById("birthdayPage")
+    .classList.remove("hidden");
 
-      userAnswer.toLowerCase()
+   /* PLAY MUSIC */
+const music =
+document.getElementById("bgMusic");
 
-      ===
+music.volume = 0.8;
+music.load();
 
-      correctAnswer.toLowerCase()
+music.play()
+.then(()=>{
 
-    ){
+  console.log("Music Playing");
 
-      document
-      .getElementById("quizPage")
-      .classList.add("hidden");
+})
+.catch((err)=>{
 
-      document
-      .getElementById("birthdayPage")
-      .classList.remove("hidden");
+  console.log("Audio gagal:", err);
 
-      const music =
-      document.getElementById("bgMusic");
+  alert(
+    "Audio gagal diputar. Kemungkinan Google Drive memblok akses audio."
+  );
 
-      music.play();
+});
 
-      createConfetti();
-
-    }
-
-    else{
-
-      showPopup(
-        "Yahhh Jawabannya masih Salah 😭",
-        "Coba inget-inget lagi yaa ✨"
-      );
-
-    }
+createConfetti();
 
   }
 
-  function playVideo(){
+  else{
 
-    const wrapper =
-    document.getElementById("videoWrapper");
-
-    const iframe =
-    document.getElementById("birthdayVideo");
-
-    wrapper.style.display = "block";
-
-    iframe.src =
-
-    "https://drive.google.com/file/d/151_J1-ibFW5VcHPiITukqb71Ol3sdcN7/preview";
+    showPopup(
+      "Yahhh Jawabannya masih Salah 😭",
+      "Coba inget-inget lagi yaa ✨"
+    );
 
   }
+
+}
+  /* ========================= */
+/* PLAY VIDEO */
+/* ========================= */
+
+function playVideo(){
+
+  const wrapper =
+  document.getElementById("videoWrapper");
+
+  const iframe =
+  document.getElementById("birthdayVideo");
+
+  const music =
+  document.getElementById("bgMusic");
+
+  /* MATIKAN BACKGROUND MUSIC */
+  music.pause();
+
+  wrapper.style.display = "block";
+
+  iframe.src =
+  "https://drive.google.com/file/d/151_J1-ibFW5VcHPiITukqb71Ol3sdcN7/preview";
+
+}
 
   /* FULLSCREEN VIDEO */
 
@@ -1012,7 +1022,9 @@
     const icons = [
       "🎉",
       "🎊",
-      "🎂"
+      "🎂",
+      "2️⃣5️⃣","𝐈𝐊𝐀","𝐻𝒶𝓅𝓅𝓎 𝒷𝒾𝓇𝓉𝒽𝒹𝒶𝓎"
+
     ];
 
     setInterval(()=>{
